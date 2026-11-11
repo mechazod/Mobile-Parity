@@ -1,0 +1,32 @@
+name: "ParityGuard"
+description: "Catch iOS/Android drift in React Native TypeScript projects."
+branding: { icon: shield, color: blue }
+inputs:
+  path:        { description: "Project root", default: "." }
+  strict:      { description: "Include medium/low-confidence findings", default: "false" }
+  version:     { description: "parityguard npm version", default: "latest" }
+  sarif-file:  { description: "Where to write SARIF output", default: "parityguard.sarif" }
+  upload-sarif: { description: "Upload to GitHub code scanning (needs security-events: write)", default: "true" }
+  fail-on-error: { description: "Fail the job when errors are found", default: "true" }
+runs:
+  using: composite
+  steps:
+    - uses: actions/setup-node@v4
+      with: { node-version: 20 }
+    - name: Run ParityGuard
+      id: run
+      shell: bash
+      run: |
+        FLAGS=""; [ "${{ inputs.strict }}" = "true" ] && FLAGS="--strict"
+        set +e
+        npx --yes parityguard@${{ inputs.version }} check "${{ inputs.path }}" $FLAGS --format sarif > "${{ inputs.sarif-file }}"
+        npx --yes parityguard@${{ inputs.version }} check "${{ inputs.path }}" $FLAGS
+        echo "exit=$?" >> "$GITHUB_OUTPUT"
+    - name: Upload SARIF
+      if: inputs.upload-sarif == 'true'
+      uses: github/codeql-action/upload-sarif@v3
+      with: { sarif_file: "${{ inputs.sarif-file }}" }
+    - name: Fail on errors
+      if: inputs.fail-on-error == 'true' && steps.run.outputs.exit == '1'
+      shell: bash
+      run: exit 1

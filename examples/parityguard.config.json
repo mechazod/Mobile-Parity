@@ -1,0 +1,1 @@
+{ "rules": { "PG001": "warn", "PG009": "off" }, "exclude": ["src/legacy/**"] }

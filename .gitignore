@@ -1,0 +1,5 @@
+node_modules
+dist
+corpus/work
+corpus/out
+corpus/results.csv

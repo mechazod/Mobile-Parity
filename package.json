@@ -1,0 +1,45 @@
+{
+  "name": "parityguard",
+  "version": "0.1.0-alpha.0",
+  "description": "Catch iOS/Android drift in React Native TypeScript projects before it reaches a device.",
+  "license": "MIT",
+  "type": "module",
+  "bin": {
+    "parityguard": "dist/cli.js"
+  },
+  "main": "dist/index.js",
+  "files": [
+    "dist",
+    "data"
+  ],
+  "engines": {
+    "node": ">=20.19"
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "test": "vitest run",
+    "check:fixtures": "node dist/cli.js check fixtures/bad-app",
+    "prepublishOnly": "npm run build && npm test"
+  },
+  "dependencies": {
+    "ts-morph": "^28.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "^26.6.6",
+    "typescript": "^7.0.2",
+    "vitest": "^5.1.0"
+  },
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
+  },
+  "keywords": [
+    "react-native",
+    "ios",
+    "android",
+    "lint",
+    "cross-platform",
+    "typescript",
+    "expo"
+  ]
+}

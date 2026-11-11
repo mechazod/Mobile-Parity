@@ -1,0 +1,22 @@
+{
+  "dataVersion": "2026.11.0",
+  "capabilities": [
+    { "id": "camera", "imports": ["expo-camera", "react-native-vision-camera", "react-native-camera"],
+      "iosKeys": ["NSCameraUsageDescription"], "androidPermissions": ["android.permission.CAMERA"],
+      "expoPlugins": ["expo-camera", "react-native-vision-camera"] },
+    { "id": "location", "imports": ["expo-location", "react-native-geolocation-service", "@react-native-community/geolocation"],
+      "iosKeys": ["NSLocationWhenInUseUsageDescription", "NSLocationAlwaysAndWhenInUseUsageDescription"],
+      "androidPermissions": ["android.permission.ACCESS_FINE_LOCATION", "android.permission.ACCESS_COARSE_LOCATION"],
+      "expoPlugins": ["expo-location"] },
+    { "id": "microphone", "imports": ["expo-av", "react-native-audio-recorder-player"],
+      "iosKeys": ["NSMicrophoneUsageDescription"], "androidPermissions": ["android.permission.RECORD_AUDIO"],
+      "expoPlugins": ["expo-av", "expo-audio"] },
+    { "id": "contacts", "imports": ["expo-contacts", "react-native-contacts"],
+      "iosKeys": ["NSContactsUsageDescription"], "androidPermissions": ["android.permission.READ_CONTACTS"],
+      "expoPlugins": ["expo-contacts"] },
+    { "id": "photos", "imports": ["expo-image-picker", "expo-media-library", "@react-native-camera-roll/camera-roll"],
+      "iosKeys": ["NSPhotoLibraryUsageDescription"],
+      "androidPermissions": ["android.permission.READ_MEDIA_IMAGES", "android.permission.READ_EXTERNAL_STORAGE"],
+      "expoPlugins": ["expo-image-picker", "expo-media-library"] }
+  ]
+}

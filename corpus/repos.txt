@@ -1,0 +1,3 @@
+# one per line: owner/name or owner/name:subdir (for apps nested in a repo). Add ~20 real RN apps, mixed Expo + bare.
+obytes/react-native-template-obytes
+infinitered/ignite:boilerplate

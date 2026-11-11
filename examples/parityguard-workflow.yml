@@ -1,0 +1,10 @@
+# Copy to .github/workflows/parityguard.yml in your React Native app
+name: ParityGuard
+on: [pull_request]
+permissions: { contents: read, security-events: write }
+jobs:
+  parity:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: mechazod/parityguard@v0   # replace after publishing
